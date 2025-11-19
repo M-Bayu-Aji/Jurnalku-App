@@ -43,3 +43,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Ignore local settings for AI settings screen
+lib/screens/setting_ai.dart

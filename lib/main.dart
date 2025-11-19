@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jurnalku_app/screens/home.dart';
+import 'package:jurnalku_app/screens/setting_ai.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: const Home(),
+      title: 'Jurnalku App',
+      home: const SettingAi(),
     );
   }
 }
