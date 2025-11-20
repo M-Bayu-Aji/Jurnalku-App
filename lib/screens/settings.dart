@@ -197,11 +197,11 @@ class Settings extends StatelessWidget {
   // CARD UBAH PASSWORD (STATEFUL BUILDER)
   // ===========================================================
   Widget _buildChangePasswordCard() {
+    bool oldPass = true;
+    bool newPass = true;
+
     return StatefulBuilder(
       builder: (context, setState) {
-        bool oldPass = true;
-        bool newPass = true;
-
         return Container(
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
