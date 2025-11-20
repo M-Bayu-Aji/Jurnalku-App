@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jurnalku_app/screens/permintaan_saksi.dart';
+import 'package:jurnalku_app/screens/progress_belajar.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -7,13 +7,12 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Jurnalku App',
-      home: const PermintaanSaksi(),
+      home: const ProgressBelajar(),
     );
   }
 }
