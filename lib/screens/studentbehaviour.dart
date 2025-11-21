@@ -2,12 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Studentbehaviour extends StatelessWidget {
-  
   const Studentbehaviour({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> notes = [
+      {
+        'title': 'Total Catatan',
+        'bg-card': 'FFF',
+        'border-card': 'D9D9D9',
+        'icon': Icons.folder_copy_outlined,
+        'color-icon': Color(0xFF235380),
+        'bg-icon':  Color(0xFFCFE0FA),
+      },
+      {
+        'title': 'Dalam Perbaikan',
+        'bg-card': 'FFF',
+        'border-card': 'D9D9D9',
+        'icon': Icons.flash_on_outlined,
+        'color-icon': Color.fromARGB(255, 146, 129, 30),
+        'bg-icon':  Color.fromARGB(255, 229, 223, 138),
+      },
+      {
+        'title': 'Sudah Berubah',
+        'bg-card': 'FFF',
+        'border-card': 'D9D9D9',
+        'icon': Icons.check_circle_outline,
+        'color-icon': Color.fromARGB(255, 39, 168, 77),
+        'bg-icon':  Color.fromARGB(255, 182, 241, 185),
+      },
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -141,53 +165,75 @@ class Studentbehaviour extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: const Color.fromARGB(255, 173, 173, 173),
-                              ),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Total Catatan',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.grey[600],
+
+                    ListView.builder(
+                      itemCount: notes.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final note = notes[index];
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: Color(
+                                    int.parse("0xFF${notes[index]['bg-card']}"),
+                                  ),
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                    color: Color(
+                                      int.parse(
+                                        "0xFF${notes[index]['border-card']}",
                                       ),
-                                    ), Text('0', style: GoogleFonts.poppins(
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.grey[900],
-                                    ),)
+                                    ),
+                                  ),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${notes[index]['title']}',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.grey[600],
+                                          ),
+                                        ),
+                                        Text(
+                                          '0',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.grey[900],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    CircleAvatar(
+                                      radius: 24,
+                                      backgroundColor: notes[index]['bg-icon'],
+                                      child: Icon(
+                                        notes[index]['icon'],
+                                        color: notes[index]['color-icon'],
+                                      ),
+                                    ),
                                   ],
                                 ),
-                                CircleAvatar(
-                                  radius: 24,
-                                  backgroundColor: const Color.fromARGB(255, 139, 169, 207),
-                                  child: Icon(
-                                    Icons.folder,
-                                    color: const Color.fromARGB(255, 35, 83, 128),
-                                  ),
-                                  )
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
                   ],
                 ),

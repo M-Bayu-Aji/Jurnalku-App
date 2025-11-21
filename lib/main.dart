@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_app/screens/home.dart';
+import 'package:jurnalku_app/screens/studentbehaviour.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Jurnalku App',
-      home: const Home(),
+      home: const Studentbehaviour(),
     );
   }
 }
