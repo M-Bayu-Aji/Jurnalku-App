@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Studentbehaviour extends StatelessWidget {
+  
   const Studentbehaviour({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +57,10 @@ class Studentbehaviour extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsetsGeometry.symmetric(horizontal: 15.0, vertical: 10),
+                padding: const EdgeInsetsGeometry.symmetric(
+                  horizontal: 15.0,
+                  vertical: 10,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -81,59 +86,108 @@ class Studentbehaviour extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Padding(padding: const EdgeInsets.symmetric(vertical: 15),
-                        child: Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFFF8E5), // kuning muda
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Color(0xFFFFCC75), // kuning border
-                              width: 1.5,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFF8E5), // kuning muda
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Color(0xFFFFCC75), // kuning border
+                                width: 1.5,
+                              ),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.warning_amber_rounded,
+                                  color: Color(0xFFFFA800),
+                                  size: 26,
+                                ),
+
+                                SizedBox(width: 12),
+
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Perhatian",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xFFB87B00),
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "Jika Anda merasa ada catatan yang tidak sesuai atau keliru, "
+                                        "silakan hubungi guru jurusan untuk mengajukan klarifikasi.",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          height: 1.4,
+                                          color: Color(0xFF6B4F00),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.warning_amber_rounded,
-                                color: Color(0xFFFFA800),
-                                size: 26,
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: const Color.fromARGB(255, 173, 173, 173),
                               ),
-
-                              SizedBox(width: 12),
-
-                              Expanded(
-                                child: Column(
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Perhatian",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xFFB87B00),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4),
-                                    Text(
-                                      "Jika Anda merasa ada catatan yang tidak sesuai atau keliru, "
-                                      "silakan hubungi guru jurusan untuk mengajukan klarifikasi.",
-                                      style: TextStyle(
+                                      'Total Catatan',
+                                      style: GoogleFonts.poppins(
                                         fontSize: 14,
-                                        height: 1.4,
-                                        color: Color(0xFF6B4F00),
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.grey[600],
                                       ),
-                                    ),
+                                    ), Text('0', style: GoogleFonts.poppins(
+                                      fontSize: 32,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.grey[900],
+                                    ),)
                                   ],
                                 ),
-                              ),
-                            ],
+                                CircleAvatar(
+                                  radius: 24,
+                                  backgroundColor: const Color.fromARGB(255, 139, 169, 207),
+                                  child: Icon(
+                                    Icons.folder,
+                                    color: const Color.fromARGB(255, 35, 83, 128),
+                                  ),
+                                  )
+                              ],
+                            ),
                           ),
-                        ),
-                        ),
-                        
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
