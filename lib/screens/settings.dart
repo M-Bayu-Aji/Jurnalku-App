@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jurnalku_app/widgets/navbar.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -7,52 +8,20 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      extendBodyBehindAppBar: false,
-
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        shape: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(children: [
-              const Icon(Icons.home, color: Colors.black),
-              const SizedBox(width: 10),
-            ]),
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+      body: Column(
+        children: [
+          NavbarWidget(
+            nama: "Farrel Muhammad Bintang",
+            kelas: "PPLG XII-5",
+            avatarPath: "assets/images/profile.png",
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "Farrel Muhammad Bintang",
-                      style: TextStyle(fontSize: 18, color: Colors.black),
-                    ),
-                    Text(
-                      "PPLG XII-5",
-                      style: TextStyle(fontSize: 10, color: Colors.grey),
-                    ),
-                  ],
-                ),
-                SizedBox(width: 8),
-                CircleAvatar(
-                  radius: 18,
-                  backgroundImage: AssetImage("assets/images/profile.png"),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
               // ===========================
               //        CARD PROFIL
               // ===========================
@@ -166,7 +135,10 @@ class Settings extends StatelessWidget {
               _buildChangePasswordCard(),
             ],
           ),
-        ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

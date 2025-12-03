@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jurnalku_app/widgets/navbar.dart';
 
 class PermintaanSaksi extends StatelessWidget {
   const PermintaanSaksi({super.key});
@@ -7,50 +8,18 @@ class PermintaanSaksi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      extendBodyBehindAppBar: false,
-
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        shape: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(children: [
-              const Icon(Icons.home, color: Colors.black),
-              const SizedBox(width: 10),
-            ]),
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Farrel Muhammad Bintang",
-                      style: TextStyle(fontSize: 18, color: Colors.black),
-                    ),
-                    Text(
-                      "PPLG XII-5",
-                      style: TextStyle(fontSize: 10, color: Colors.grey),
-                    ),
-                  ],
-                ),
-                SizedBox(width: 8),
-                CircleAvatar(
-                  radius: 18,
-                  backgroundImage: AssetImage("assets/images/profile.png"),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
+      body: Column(
+        children: [
+          NavbarWidget(
+            nama: "Farrel Muhammad Bintang",
+            kelas: "PPLG XII-5",
+            avatarPath: "assets/images/profile.png",
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Permintaan saksi", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38)),
@@ -124,7 +93,10 @@ class PermintaanSaksi extends StatelessWidget {
               ),
             ],
           ),
-        ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

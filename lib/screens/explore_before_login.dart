@@ -69,7 +69,7 @@ class Explore extends StatelessWidget {
             padding: const EdgeInsets.only(right: 8.0),
             child: TextButton.icon(
               onPressed: () {
-                Navigator.pushNamed(context, '/dashboard');
+                Navigator.pushNamed(context, '/Login');
               },
               label: Text(
                 'Dashboard',

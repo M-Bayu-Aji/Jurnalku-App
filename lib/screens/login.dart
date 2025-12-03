@@ -135,7 +135,9 @@ class _LoginState extends State<Login> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/dashboard');
+                        },
                         child: const Text(
                           "Masuk",
                           style: TextStyle(fontSize: 16, color: Colors.white),

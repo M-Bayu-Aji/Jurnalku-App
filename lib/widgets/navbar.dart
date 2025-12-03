@@ -27,7 +27,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
           IconButton(
             icon: Icon(Icons.home_outlined, color: Colors.grey[700], size: 26),
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/home');
+              Navigator.pushReplacementNamed(context, '/explore');
             },
           ),
           Row(
@@ -82,7 +82,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                       Navigator.pushNamed(context, '/permintaan-saksi');
                       break;
                     case 'progress':
-                      Navigator.pushNamed(context, '/progress');
+                      Navigator.pushNamed(context, '/progress-siswa');
                       break;
                     case 'catatan':
                       Navigator.pushNamed(context, '/catatan-sikap');
@@ -170,7 +170,9 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              child: const Text('Logout'),
+              child: const Text('Logout', style: TextStyle(
+                color: Colors.white,
+              ),),
             ),
           ],
         );
