@@ -1,0 +1,194 @@
+import 'package:flutter/material.dart';
+import 'package:jurnalku_app/widgets/navbar.dart';
+import 'package:jurnalku_app/widgets/status_card.dart';
+import 'package:jurnalku_app/widgets/project_card.dart';
+
+class Progress extends StatelessWidget {
+  const Progress({super.key});
+
+  // Data untuk gambar 1 (Status Cards)
+  static final List<Map<String, dynamic>> dataGambar1 = [
+    {
+      'title': 'Total Pengajuan',
+      'count': 0,
+      'subtitle': 'Semua status',
+      'subtitleColor': Colors.blue,
+      'iconColor': Colors.blue,
+      'icon': Icons.check_circle_outline,
+    },
+    {
+      'title': 'Halaman Ini',
+      'count': 0,
+      'subtitle': 'Data ditampilkan',
+      'subtitleColor': Colors.green,
+      'iconColor': Colors.green,
+      'icon': Icons.description_outlined,
+    },
+    {
+      'title': 'Status Pending',
+      'count': 0,
+      'subtitle': 'Perlu validasi',
+      'subtitleColor': Colors.orange,
+      'iconColor': Colors.orange,
+      'icon': Icons.access_time,
+    },
+  ];
+
+  // Data untuk gambar 2 (Project Cards)
+  static final List<Map<String, dynamic>> dataGambar2 = [
+    {
+      'title': 'Project Work',
+      'subtitle': 'Kompetensi dan materi pembelajaran',
+      'kompetensi': '-',
+      'guru': '-',
+      'tanggal': '-',
+      'status': '-',
+      'catatanGuru': '-',
+      'catatanSiswa': '-',
+    },
+    {
+      'title': 'Mobile Apps',
+      'subtitle': 'Kompetensi dan materi pembelajaran',
+      'kompetensi': '-',
+      'guru': '-',
+      'tanggal': '-',
+      'status': '-',
+      'catatanGuru': '-',
+      'catatanSiswa': '-',
+    },
+    {
+      'title': 'UKK (Uji Kompetensi Keahlian)',
+      'subtitle': 'Kompetensi dan materi pembelajaran',
+      'kompetensi': '-',
+      'guru': '-',
+      'tanggal': '-',
+      'status': '-',
+      'catatanGuru': '-',
+      'catatanSiswa': '-',
+    },
+    {
+      'title': 'GIM',
+      'subtitle': 'Kompetensi dan materi pembelajaran',
+      'kompetensi': '-',
+      'guru': '-',
+      'tanggal': '-',
+      'status': '-',
+      'catatanGuru': '-',
+      'catatanSiswa': '-',
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[50],
+      body: SafeArea(
+        child: Column(
+          children: [
+            const NavbarWidget(
+              nama: 'Muhammad Bayu Aji Sutisna Putra',
+              kelas: 'PPLG XII-5',
+              avatarPath: 'assets/images/avatar.png',
+            ),
+            const Divider(thickness: 1, height: 1, color: Color(0xFFEEEEEE)),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Header Section
+                      const Text(
+                        'Progress Belajar',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      const Text(
+                        'Pantau perkembangan kompetensi dan\nmateri pembelajaran Anda',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Date
+                      Text(
+                        _getFormattedDate(),
+                        style: const TextStyle(
+                          fontSize: 13,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Status Cards (Gambar 1)
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: dataGambar1.length,
+                        itemBuilder: (context, index) {
+                          final data = dataGambar1[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 12.0),
+                            child: StatusCard(
+                              title: data['title'],
+                              count: data['count'],
+                              subtitle: data['subtitle'],
+                              subtitleColor: data['subtitleColor'],
+                              iconColor: data['iconColor'],
+                              icon: data['icon'],
+                            ),
+                          );
+                        },
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Project Cards (Gambar 2)
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: dataGambar2.length,
+                        itemBuilder: (context, index) {
+                          final data = dataGambar2[index];
+                          return ProjectCard(
+                            title: data['title'],
+                            subtitle: data['subtitle'],
+                            kompetensi: data['kompetensi'],
+                            guru: data['guru'],
+                            tanggal: data['tanggal'],
+                            status: data['status'],
+                            catatanGuru: data['catatanGuru'],
+                            catatanSiswa: data['catatanSiswa'],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _getFormattedDate() {
+    final now = DateTime.now();
+    final days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    final months = [
+      'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+      'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
+    
+    return '${days[now.weekday % 7]}, ${now.day} ${months[now.month - 1]} ${now.year}';
+  }
+}

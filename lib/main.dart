@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jurnalku_app/screens/permintaan_saksi.dart';
+import 'package:jurnalku_app/screens/progress.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Jurnalku App',
-      home: const PermintaanSaksi(),
+      home: const Progress(),
     );
   }
 }
