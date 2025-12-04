@@ -691,7 +691,10 @@ class Dashboard extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 10, bottom: 5),
+                                  padding: const EdgeInsets.only(
+                                    right: 10,
+                                    bottom: 5,
+                                  ),
                                   child: Row(
                                     children: [
                                       CircleAvatar(
@@ -729,6 +732,91 @@ class Dashboard extends StatelessWidget {
                 ),
               ),
             ),
+
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 15,
+                bottom: 40,
+                left: 16,
+                right: 16,
+              ),
+              child: Container(
+                width: 400,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade200),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 20,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // ✅ INI DIBIKIN KE KIRI (START)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 22),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Lihat Progress Kamu ->',
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.blue.shade700,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // ✅ YANG INI TETAP TENGAH
+                      Text(
+                        'Belum ada kompetensi / progress',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.blue.shade400,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+
+                      // ✅ YANG INI JUGA TETAP TENGAH
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        child: Text(
+                          'Lihat semua kompetensi ->',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            Container(
+              width: 400,
+              
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade100,),
+                child: Text(
+                  '© GEN-28 PPLG SMK Wikrama Bogor. All rights reserved.',
+                  style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.blue.shade800,
+                  )
+                  ),
+            )
           ],
         ),
       ),
