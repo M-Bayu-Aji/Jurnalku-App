@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_app/screens/dashboard.dart';
-import 'package:jurnalku_app/screens/home.dart';
-import 'package:jurnalku_app/screens/profile.dart';
-import 'package:jurnalku_app/screens/studentbehaviour.dart';
+import 'package:jurnalku_app/screens/progress.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,7 +9,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
