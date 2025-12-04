@@ -47,22 +47,56 @@ class Profile extends StatelessWidget {
       ),
 
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ElevatedButton(onPressed: () {},
-            child: Text('< Kembali', style: GoogleFonts.poppins(color: Colors.white)),
-            style:
-            ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue[900],
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6)
-              )
-            )
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  '< Kembali',
+                  style: GoogleFonts.poppins(color: Colors.white),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+              ),
             ),
 
-            
+            Stack(
+              children: [
+                Container(
+                  width: 400,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade400,
+                        blurRadius: 3,
+                        offset: const Offset(0, 1),
+                      ),
+                    ] 
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 400,
+                        height: 150,
+                        child: Image.asset(
+                          'assets/images/boxies.png',
+                          fit: BoxFit.cover,
+                          ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_app/screens/dashboard.dart';
+import 'package:jurnalku_app/screens/profile.dart';
 import 'package:jurnalku_app/screens/progress.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Jurnalku App',
-      home: const Dashboard(),
+      home: const Profile(),
     );
   }
 }
