@@ -84,6 +84,17 @@ class Dashboard extends StatelessWidget {
       },
     ];
 
+    List<Map<String, dynamic>> progressAkademik = [
+      {"color": Colors.blue.shade700, "status": "Selesai", "total": 0},
+      {"color": Colors.blue.shade400, "status": "Pending", "total": 0},
+      {"color": Colors.blue.shade200, "status": "Belum", "total": 0},
+      {
+        "color": const Color.fromARGB(255, 19, 143, 192),
+        "status": "Hari ini",
+        "total": 0,
+      },
+    ];
+
     List<Map<String, dynamic>> statsKompetensi = [
       {
         "title": "Materi Diselesaikan",
@@ -532,8 +543,8 @@ class Dashboard extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.only(
-                top: 20,
-                bottom: 12,
+                top: 40,
+                bottom: 20,
                 right: 18,
                 left: 18,
               ),
@@ -637,6 +648,86 @@ class Dashboard extends StatelessWidget {
                   ),
                 );
               },
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Container(
+                width: 400,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 20,
+                  horizontal: 20,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade200),
+                ),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Text(
+                        'Progress Akademik',
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    ListView.builder(
+                      itemCount: progressAkademik.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final i = progressAkademik[index];
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10, bottom: 5),
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 6,
+                                        backgroundColor: i['color'],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 8),
+                                        child: Text(
+                                          i['status'],
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.grey[900],
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Text(
+                                  i['total'].toString(),
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
