@@ -7,6 +7,14 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color darken(Color color, [double amount = .1]) {
+      final hsl = HSLColor.fromColor(color);
+      final hslDark = hsl.withLightness(
+        (hsl.lightness - amount).clamp(0.0, 1.0),
+      );
+      return hslDark.toColor();
+    }
+
     List<Map<String, dynamic>> fiturList = [
       {
         "icon": Icons.apartment,
@@ -73,6 +81,41 @@ class Dashboard extends StatelessWidget {
         "title": "Catatan Sikap",
         "desc": "Lihat catatan sikap dan perilaku dari guru.",
         "route": "/catatan-sikap",
+      },
+    ];
+
+    List<Map<String, dynamic>> statsKompetensi = [
+      {
+        "title": "Materi Diselesaikan",
+        "total": 0,
+        "label": "Selesai",
+        "color": Colors.green,
+        "icon": Icons.check_circle_outline,
+        "bgIcon": const Color(0xFFE9FBEF),
+      },
+      {
+        "title": "Pengajuan Pending",
+        "total": 0,
+        "label": "Pending",
+        "color": Colors.orange,
+        "icon": Icons.access_time_outlined,
+        "bgIcon": const Color(0xFFFFF1E6),
+      },
+      {
+        "title": "Materi Hari Ini",
+        "total": 0,
+        "label": "Hari Ini",
+        "color": Colors.blue,
+        "icon": Icons.calendar_today_outlined,
+        "bgIcon": const Color(0xFFEAF1FF),
+      },
+      {
+        "title": "Materi Revisi",
+        "total": 0,
+        "label": "Revisi",
+        "color": Colors.purple,
+        "icon": Icons.autorenew_outlined,
+        "bgIcon": const Color(0xFFF3E8FF),
       },
     ];
 
@@ -280,8 +323,8 @@ class Dashboard extends StatelessWidget {
 
             Padding(
               padding: EdgeInsets.only(
-                right: 16,
-                left: 16,
+                right: 18,
+                left: 18,
                 top: 40,
                 bottom: 20,
               ),
@@ -393,7 +436,7 @@ class Dashboard extends StatelessWidget {
 
             Padding(padding: const EdgeInsets.only(top: 20)),
 
-             ListView.builder(
+            ListView.builder(
               itemCount: menuAplikasi2.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -487,6 +530,114 @@ class Dashboard extends StatelessWidget {
               },
             ),
 
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 20,
+                bottom: 12,
+                right: 18,
+                left: 18,
+              ),
+              child: Text(
+                'STATISTIKA KOMPETENSI',
+
+                style: GoogleFonts.poppins(
+                  color: Colors.grey[800],
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: -0.5,
+                ),
+              ),
+            ),
+
+            ListView.builder(
+              itemCount: statsKompetensi.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                final i = statsKompetensi[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 10,
+                  ),
+                  child: Container(
+                    width: 400,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 24,
+                      horizontal: 20,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey.shade200),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 3),
+                              child: Text(
+                                i['title'],
+                                style: GoogleFonts.poppins(
+                                  color: Colors.grey[700],
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 3),
+                              child: Text(
+                                i['total'].toString(),
+                                style: GoogleFonts.poppins(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w600,
+                                  color: darken(i['color'], 0.2),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 3),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 3,
+                                    ),
+                                    child: CircleAvatar(
+                                      radius: 4,
+                                      backgroundColor: i['color'],
+                                    ),
+                                  ),
+                                  Text(
+                                    i['label'],
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: i['color'],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        CircleAvatar(
+                          radius: 20,
+                          backgroundColor: i['color'].withOpacity(0.2),
+                          child: Icon(i['icon'], color: i['color']),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
