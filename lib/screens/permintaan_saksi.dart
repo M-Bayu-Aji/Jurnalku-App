@@ -166,10 +166,7 @@ class PermintaanSaksi extends StatelessWidget {
               ),
             ],
           ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -1,14 +1,22 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jurnalku_app/widgets/footer.dart';
 import 'package:jurnalku_app/widgets/student_card_data.dart';
 
-class Explore extends StatelessWidget {
+class Explore extends StatefulWidget {
   const Explore({super.key});
 
+  @override
+  State<Explore> createState() => _ExploreState();
+}
+
+class _ExploreState extends State<Explore> {
   static const Color primaryBlue = Color(0xFF1E88E5);
   static const Color darkBlue = Color(0xFF1565C0);
-  static const Color lightBlue = Color(0xFF64B5F6);
+  // lightBlue not currently used
 
   static final List<Map<String, dynamic>> students = [
     {
@@ -29,6 +37,33 @@ class Explore extends StatelessWidget {
       'portfolioCount': 3,
       'certificateCount': 10,
     },
+  ];
+
+  bool _showAdvancedFilter = false;
+  String? _selectedRombel;
+  String? _selectedRayon;
+  String? _selectedJurusan;
+
+  final List<String> _rombelOptions = [
+    'Semua Rombel',
+    'PPLG XII-4',
+    'PPLG XII-5',
+  ];
+  final List<String> _rayonOptions = [
+    'Semua Rayon',
+    'Cia 6',
+    'Cic 8',
+    'Cic 9',
+  ];
+  final List<String> _jurusanOptions = [
+    'Semua Jurusan',
+    'PPLG',
+    'TJKT',
+    "DKV",
+    "HTL",
+    "KLN",
+    "PMN",
+    "MPLB"
   ];
 
   @override
@@ -93,6 +128,7 @@ class Explore extends StatelessWidget {
           children: [
             _buildHeader(context),
             _buildContent(context),
+            const FooterWidget(),
           ],
         ),
       ),
@@ -102,7 +138,7 @@ class Explore extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage('assets/images/explore_header.png'),
           fit: BoxFit.cover,
         ),
@@ -137,7 +173,6 @@ class Explore extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    
                     _buildSearchCard(context),
                   ],
                 ),
@@ -167,7 +202,7 @@ class Explore extends StatelessWidget {
                   fontSize: 13,
                   color: Colors.grey[400],
                 ),
-                prefixIcon: Icon(Icons.search, color: primaryBlue, size: 20),
+                prefixIcon: const Icon(Icons.search, size: 20),
                 filled: true,
                 fillColor: Colors.grey[50],
                 border: OutlineInputBorder(
@@ -184,28 +219,40 @@ class Explore extends StatelessWidget {
 
             // Buttons row
             Row(
-              children: [ 
+              children: [
                 Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.filter_list, size: 16, color: primaryBlue),
-                    label: Text(
-                      'Filter',
-                      style: GoogleFonts.poppins(
-                        fontSize: 12,
-                        color: primaryBlue,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                  child: OutlinedButton(
+                    onPressed: () {
+                      setState(() {
+                        _showAdvancedFilter = !_showAdvancedFilter;
+                      });
+                    },
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 10,
-                      ),
-                      side: BorderSide(color: primaryBlue.withOpacity(0.3)),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      side: BorderSide(color: primaryBlue.withOpacity(0.25)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      backgroundColor: Colors.white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.filter_list, size: 16, color: primaryBlue),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Filter Lanjutan',
+                          style: GoogleFonts.poppins(
+                            fontSize: 13,
+                            color: primaryBlue,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Icon(
+                          _showAdvancedFilter ? Icons.expand_less : Icons.expand_more,
+                          color: primaryBlue,
+                          size: 18,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -217,24 +264,121 @@ class Explore extends StatelessWidget {
                       backgroundColor: primaryBlue,
                       foregroundColor: Colors.white,
                       elevation: 0,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 10,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     child: Text(
                       'Cari',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
-                        fontSize: 12,
+                        fontSize: 13,
                       ),
                     ),
                   ),
                 ),
               ],
+            ),
+
+            // Advanced filter panel
+            AnimatedCrossFade(
+              firstChild: const SizedBox.shrink(),
+              secondChild: Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: Material(
+                  elevation: 1,
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        DropdownButtonFormField<String>(
+                          value: _selectedRombel ?? _rombelOptions[0],
+                          isDense: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[100],
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
+                          ),
+                          items: _rombelOptions.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+                          onChanged: (v) => setState(() => _selectedRombel = v),
+                        ),
+                        const SizedBox(height: 8),
+                        DropdownButtonFormField<String>(
+                          value: _selectedRayon ?? _rayonOptions[0],
+                          isDense: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[100],
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
+                          ),
+                          items: _rayonOptions.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+                          onChanged: (v) => setState(() => _selectedRayon = v),
+                        ),
+                        const SizedBox(height: 8),
+                        DropdownButtonFormField<String>(
+                          initialValue: _selectedJurusan ?? _jurusanOptions[0],
+                          isDense: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[100],
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
+                          ),
+                          items: _jurusanOptions.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+                          onChanged: (v) => setState(() => _selectedJurusan = v),
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  // apply filter: implement actual filtering later
+                                  setState(() {
+                                    _showAdvancedFilter = false;
+                                  });
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: primaryBlue,
+                                  padding: const EdgeInsets.symmetric(vertical: 14),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                ),
+                                child: Text('Terapkan Filter', style: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: Colors.white)),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            SizedBox(
+                              width: 120,
+                              child: OutlinedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _selectedRombel = _rombelOptions[0];
+                                    _selectedRayon = _rayonOptions[0];
+                                    _selectedJurusan = _jurusanOptions[0];
+                                  });
+                                },
+                                style: OutlinedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(vertical: 14),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                ),
+                                child: Text('Reset', style: GoogleFonts.poppins()),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              crossFadeState: _showAdvancedFilter ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+              duration: const Duration(milliseconds: 200),
             ),
           ],
         ),
@@ -268,7 +412,7 @@ class Explore extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          
+
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
