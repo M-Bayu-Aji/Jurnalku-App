@@ -174,8 +174,8 @@ class _LoginState extends State<Login> {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 15),
                     ),
-                    SizedBox(height: 40,),
-                    
+                    SizedBox(height: 40),
+
                     Card(
                       elevation: 2,
                       color: Colors.white,
@@ -186,7 +186,7 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.all(16),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [                            
+                          children: [
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
@@ -200,7 +200,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(width: 15),
-                            
+
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -238,7 +238,7 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.all(16),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [                            
+                          children: [
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
@@ -252,7 +252,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(width: 15),
-                            
+
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,7 +290,7 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.all(16),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [                            
+                          children: [
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
@@ -304,7 +304,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(width: 15),
-                            
+
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,7 +342,7 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.all(16),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [                            
+                          children: [
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
@@ -356,7 +356,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(width: 15),
-                            
+
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -394,7 +394,7 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.all(16),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [                            
+                          children: [
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
@@ -408,7 +408,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(width: 15),
-                            
+
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -446,7 +446,7 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.all(16),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [                            
+                          children: [
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
@@ -460,7 +460,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(width: 15),
-                            
+
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -487,10 +487,59 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 40,),
+                    SizedBox(height: 40),
 
-                    Center(child: Icon(Icons.facebook_outlined)),                                                                              
-                    Center(child: Text("© GEN-28 PPLG SMK Wikrama Bogor. All Rights Reserved.", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),)),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF003D8F),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5),
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5),
+                        ),
+                      ),                      
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(Icons.phone, color: Colors.white, size: 28),
+                              SizedBox(width: 20),
+                              Icon(
+                                Icons.camera_alt,
+                                color: Colors.white,
+                                size: 28,
+                              ), // IG
+                              SizedBox(width: 20),
+                              Icon(
+                                Icons.link,
+                                color: Colors.white,
+                                size: 28,
+                              ), // LinkedIn
+                              SizedBox(width: 20),
+                              Icon(
+                                Icons.play_circle_fill,
+                                color: Colors.white,
+                                size: 28,
+                              ), // YouTube
+                            ],
+                          ),
+                          SizedBox(height: 15),
+                          Text(
+                            "© GEN-28 PPLG SMK Wikrama Bogor. All Rights Reserved.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -534,7 +583,7 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-        ],      
+        ],
       ),
     );
   }

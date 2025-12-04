@@ -8,23 +8,61 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          NavbarWidget(
-            nama: "Farrel Muhammad Bintang",
-            kelas: "PPLG XII-5",
-            avatarPath: "assets/images/profile.png",
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+      extendBodyBehindAppBar: false,
+
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        shape: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(children: [
+              const Icon(Icons.home, color: Colors.black),
+              const SizedBox(width: 10),
+            ]),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-              // ===========================
-              //        CARD PROFIL
-              // ===========================
+                    Text(
+                      "Farrel Muhammad Bintang",
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      "PPLG XII-5",
+                      style: TextStyle(fontSize: 10, color: Colors.grey),
+                    ),
+                  ],
+                ),
+                SizedBox(width: 8),
+                CircleAvatar(
+                  radius: 18,
+                  backgroundImage: AssetImage("assets/images/profile.png"),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [     
+              Text(
+                "Pengaturan Akun",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
+              ),
+              Text(
+                "Dashboard / Pengaturan Akun",
+                style: TextStyle(fontSize: 20),
+              ),
+              SizedBox(height: 20),       
               Container(
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -46,6 +84,8 @@ class Settings extends StatelessWidget {
                       onTap: () {},
                       child: Column(
                         children: [
+                          Text("Informasi Profil", style: TextStyle(fontWeight: FontWeight.bold),),
+                          SizedBox(height: 10,),
                           CircleAvatar(
                             radius: 55,
                             backgroundImage:
