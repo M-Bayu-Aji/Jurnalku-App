@@ -59,7 +59,7 @@ class UserGuideScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const NavbarWidget(
-                nama: 'Farrel Muhammad Bintang',
+                nama: 'Muhammad Bayu Aji Sutisna Putra',
                 kelas: 'PPLG XII-5',
                 avatarPath: 'assets/images/avatar.png',
               ),

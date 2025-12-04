@@ -1,6 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jurnalku_app/widgets/footer.dart';
+import 'package:jurnalku_app/widgets/navbar.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -131,42 +135,14 @@ class Dashboard extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 2,
-        toolbarHeight: 60,
-        shadowColor: Colors.black.withOpacity(0.6),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(Icons.home, color: Colors.grey[600], size: 24),
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      'M.Azriel Danu Rahman',
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[900],
-                      ),
-                    ),
-                    Text(
-                      'PPLG XII - 5',
-                      style: GoogleFonts.poppins(
-                        fontSize: 12,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(width: 12),
-                CircleAvatar(radius: 20, backgroundColor: Colors.grey[200]),
-              ],
-            ),
-          ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(72),
+        child: SafeArea(
+          child: NavbarWidget(
+            nama: 'M.Azriel Danu Rahman',
+            kelas: 'PPLG XII - 5',
+            avatarPath: 'assets/images/avatar.png',
+          ),
         ),
       ),
 
@@ -178,7 +154,7 @@ class Dashboard extends StatelessWidget {
             Stack(
               children: [
                 // Background SVG
-                Container(
+                SizedBox(
                   height: 250,
                   width: double.infinity,
                   child: SvgPicture.asset(
@@ -801,22 +777,7 @@ class Dashboard extends StatelessWidget {
                 ),
               ),
             ),
-
-            Container(
-              width: 400,
-              
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              decoration: BoxDecoration(
-                color: Colors.blue.shade100,),
-                child: Text(
-                  '© GEN-28 PPLG SMK Wikrama Bogor. All rights reserved.',
-                  style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.blue.shade800,
-                  )
-                  ),
-            )
+            const FooterWidget(),
           ],
         ),
       ),

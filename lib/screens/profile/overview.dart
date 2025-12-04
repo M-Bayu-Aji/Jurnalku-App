@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:jurnalku_app/widgets/item_profile_card.dart';
+import 'package:jurnalku_app/widgets/document_profile.card.dart';
+
+class OverviewTab extends StatelessWidget {
+  const OverviewTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0),
+          child: ItemProfileCard(title: "Portfolio", icon: "💼", onPressed: () {}),
+        ),
+        const SizedBox(height: 30),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0),
+          child: ItemProfileCard(title: "Sertifikat",  icon: "🏆", onPressed: () {}),
+        ),
+        const SizedBox(height: 30),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0),
+          child: Column(
+            children: [
+              DocumentProfileCard(
+                title: "Curriculum Vitae",
+                subtitle: "Dokumen CV Siswa",
+                iconButton: Icons.folder,
+                labelButton: "Lihat CV",
+                buttonColor: Colors.blue[800]!,
+                onPressed: () {},
+              ),
+              const Divider(),
+              DocumentProfileCard(
+                title: "Kartu Pelajar",
+                subtitle: "Kartu Identitas Siswa",
+                iconButton: Icons.folder,
+                labelButton: "Lihat Kartu Pelajar",
+                buttonColor: Colors.green[600]!,
+                onPressed: () {},
+              ),
+
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

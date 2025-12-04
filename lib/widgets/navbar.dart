@@ -70,13 +70,13 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                       Navigator.pushNamed(context, '/dashboard');
                       break;
                     case 'profil':
-                      Navigator.pushNamed(context, '/profil');
+                      Navigator.pushNamed(context, '/profile');
                       break;
                     case 'jelajahi':
                       Navigator.pushNamed(context, '/explore');
                       break;
                     case 'jurnal':
-                      Navigator.pushNamed(context, '/jurnal');
+                      Navigator.pushNamed(context, '/jurnal-pembiasaan');
                       break;
                     case 'permintaan':
                       Navigator.pushNamed(context, '/permintaan-saksi');
