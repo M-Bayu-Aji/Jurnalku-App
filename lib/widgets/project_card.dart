@@ -83,20 +83,12 @@ class _ProjectCardState extends State<ProjectCard> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  
-                  // Info utama yang selalu terlihat
-                  _buildInfoRow('KOMPETENSI', widget.kompetensi),
-                  const SizedBox(height: 10),
-                  _buildInfoRow('GURU', widget.guru),
-                  const SizedBox(height: 10),
-                  _buildInfoRow('TANGGAL', widget.tanggal),
                 ],
               ),
             ),
           ),
           
-          // Detail tambahan (dropdown)
+          // Detail lengkap (dropdown) - semua info
           AnimatedCrossFade(
             firstChild: Container(),
             secondChild: Container(
@@ -114,6 +106,12 @@ class _ProjectCardState extends State<ProjectCard> {
                 children: [
                   const Divider(height: 1),
                   const SizedBox(height: 16),
+                  _buildInfoRow('KOMPETENSI', widget.kompetensi),
+                  const SizedBox(height: 10),
+                  _buildInfoRow('GURU', widget.guru),
+                  const SizedBox(height: 10),
+                  _buildInfoRow('TANGGAL', widget.tanggal),
+                  const SizedBox(height: 10),
                   _buildInfoRow('STATUS', widget.status),
                   const SizedBox(height: 10),
                   _buildInfoRow('CATATAN GURU', widget.catatanGuru),

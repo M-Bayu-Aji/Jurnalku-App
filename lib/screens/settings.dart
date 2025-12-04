@@ -51,11 +51,17 @@ class Settings extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // ===========================
-              //        CARD PROFIL
-              // ===========================
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [     
+              Text(
+                "Pengaturan Akun",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
+              ),
+              Text(
+                "Dashboard / Pengaturan Akun",
+                style: TextStyle(fontSize: 20),
+              ),
+              SizedBox(height: 20),       
               Container(
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -77,6 +83,8 @@ class Settings extends StatelessWidget {
                       onTap: () {},
                       child: Column(
                         children: [
+                          Text("Informasi Profil", style: TextStyle(fontWeight: FontWeight.bold),),
+                          SizedBox(height: 10,),
                           CircleAvatar(
                             radius: 55,
                             backgroundImage:
@@ -166,7 +174,7 @@ class Settings extends StatelessWidget {
               _buildChangePasswordCard(),
             ],
           ),
-        ),
+              ),
       ),
     );
   }

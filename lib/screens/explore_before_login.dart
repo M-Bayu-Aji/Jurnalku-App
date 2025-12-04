@@ -6,14 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnalku_app/widgets/footer.dart';
 import 'package:jurnalku_app/widgets/student_card_data.dart';
 
-class Explore extends StatefulWidget {
-  const Explore({super.key});
+class ExploreBeforeLogin extends StatefulWidget {
+  const ExploreBeforeLogin({super.key});
 
   @override
-  State<Explore> createState() => _ExploreState();
+  State<ExploreBeforeLogin> createState() => _ExploreState();
 }
 
-class _ExploreState extends State<Explore> {
+class _ExploreState extends State<ExploreBeforeLogin> {
   static const Color primaryBlue = Color(0xFF1E88E5);
   static const Color darkBlue = Color(0xFF1565C0);
   // lightBlue not currently used
@@ -104,10 +104,10 @@ class _ExploreState extends State<Explore> {
             padding: const EdgeInsets.only(right: 8.0),
             child: TextButton.icon(
               onPressed: () {
-                Navigator.pushNamed(context, '/dashboard');
+                Navigator.pushNamed(context, '/login');
               },
               label: Text(
-                'Dashboard',
+                'Login',
                 style: GoogleFonts.poppins(
                   fontSize: 14,
                   color: Colors.white,
