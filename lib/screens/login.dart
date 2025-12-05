@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:jurnalku_app/widgets/footer.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
