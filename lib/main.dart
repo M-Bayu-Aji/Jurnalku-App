@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Jurnalku App',
       initialRoute: '/',
       routes: {
-        "/": (context) => const Dashboard(),
+        "/": (context) => const Login(),
         "/login": (context) => const Login(),
         "/dashboard": (context) => const Dashboard(),
         "/profile": (context) => const ProfileScreen(),

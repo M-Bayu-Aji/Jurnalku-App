@@ -85,11 +85,7 @@ class Progress extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const NavbarWidget(
-              nama: 'Muhammad Bayu Aji Sutisna Putra',
-              kelas: 'PPLG XII-5',
-              avatarPath: 'assets/images/avatar.png',
-            ),
+            const NavbarWidget(),
             const Divider(thickness: 1, height: 1, color: Color(0xFFEEEEEE)),
             Expanded(
               child: SingleChildScrollView(

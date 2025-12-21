@@ -138,11 +138,7 @@ class Dashboard extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(72),
         child: SafeArea(
-          child: NavbarWidget(
-            nama: 'M.Azriel Danu Rahman',
-            kelas: 'PPLG XII - 5',
-            avatarPath: 'assets/images/avatar.png',
-          ),
+          child: NavbarWidget(),
         ),
       ),
 

@@ -5,8 +5,15 @@ class ItemProfileCard extends StatelessWidget {
   final String title;
   final String icon;
   final VoidCallback onPressed;
+  final int? count;
 
-  const ItemProfileCard({super.key, required this.title, required this.icon, required this.onPressed});
+  const ItemProfileCard({
+    super.key, 
+    required this.title, 
+    required this.icon, 
+    required this.onPressed,
+    this.count,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +44,24 @@ class ItemProfileCard extends StatelessWidget {
                   style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w600),
                 ),
               ),
+              if (count != null) ...[
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[900],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    '$count',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+              ],
               const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
             ],
           ),

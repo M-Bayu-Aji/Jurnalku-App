@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_app/widgets/footer.dart';
+import 'package:jurnalku_app/services/login.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -10,6 +11,86 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool showPassword = false;
+  bool isLoading = false;
+  
+  // Controllers
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  
+  // Service
+  final LoginService _loginService = LoginService();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  /// Fungsi untuk handle login
+  Future<void> _handleLogin() async {
+    // Validasi input
+    if (_usernameController.text.trim().isEmpty) {
+      _showSnackBar('Username atau NIS tidak boleh kosong', isError: true);
+      return;
+    }
+
+    if (_passwordController.text.isEmpty) {
+      _showSnackBar('Password tidak boleh kosong', isError: true);
+      return;
+    }
+
+    // Set loading state
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      // Panggil service login
+      final result = await _loginService.login(
+        nis: _usernameController.text.trim(),
+        password: _passwordController.text,
+      );
+
+      if (!mounted) return;
+
+      if (result['success']) {
+        // Login berhasil
+        _showSnackBar('Login berhasil! Selamat datang ${result['data'].data.name}', isError: false);
+        
+        // Tunggu sebentar agar snackbar terlihat
+        await Future.delayed(const Duration(milliseconds: 500));
+        
+        // Navigate ke dashboard
+        if (!mounted) return;
+        Navigator.pushReplacementNamed(context, '/dashboard');
+      } else {
+        // Login gagal
+        _showSnackBar(result['message'] ?? 'Login gagal', isError: true);
+      }
+    } catch (e) {
+      if (!mounted) return;
+      _showSnackBar('Terjadi kesalahan: ${e.toString()}', isError: true);
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+  }
+
+  /// Fungsi untuk menampilkan snackbar
+  void _showSnackBar(String message, {required bool isError}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: isError ? Colors.red.shade700 : Colors.green.shade700,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +162,8 @@ class _LoginState extends State<Login> {
                         ),
                         const SizedBox(height: 5),
                         TextField(
+                          controller: _usernameController,
+                          enabled: !isLoading,
                           decoration: InputDecoration(
                             hintText: "Masukkan username atau NIS",
                             filled: true,
@@ -102,7 +185,10 @@ class _LoginState extends State<Login> {
                         const SizedBox(height: 5),
 
                         TextField(
+                          controller: _passwordController,
+                          enabled: !isLoading,
                           obscureText: !showPassword,
+                          onSubmitted: (_) => _handleLogin(),
                           decoration: InputDecoration(
                             hintText: "Masukkan password",
                             filled: true,
@@ -139,19 +225,23 @@ class _LoginState extends State<Login> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            onPressed: () {
-                              Navigator.pushReplacementNamed(
-                                context,
-                                '/dashboard',
-                              );
-                            },
-                            child: const Text(
-                              "Masuk",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
-                            ),
+                            onPressed: isLoading ? null : _handleLogin,
+                            child: isLoading
+                                ? const SizedBox(
+                                    height: 24,
+                                    width: 24,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : const Text(
+                                    "Masuk",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                           ),
                         ),
 

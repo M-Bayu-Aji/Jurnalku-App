@@ -14,11 +14,7 @@ class Jurnal extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(72),
         child: SafeArea(
-          child: NavbarWidget(
-            nama: 'Farrel Muhammad Bintang',
-            kelas: 'PPLG XII-5',
-            avatarPath: 'assets/images/profile.png',
-          ),
+          child: NavbarWidget(),
         ),
       ),
 

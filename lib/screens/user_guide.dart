@@ -58,11 +58,7 @@ class UserGuideScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const NavbarWidget(
-                nama: 'Muhammad Bayu Aji Sutisna Putra',
-                kelas: 'PPLG XII-5',
-                avatarPath: 'assets/images/avatar.png',
-              ),
+              const NavbarWidget(),
               const Divider(thickness: 1, height: 1, color: Color(0xFFEEEEEE)),
               Padding(
                 padding: const EdgeInsets.all(20.0),
